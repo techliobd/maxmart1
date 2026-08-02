@@ -18,6 +18,12 @@ node_modules/
 .env.local
 .env.*
 
+# Laravel specific
+bootstrap/cache/
+storage/logs/
+storage/framework/
+public/storage
+
 # Logs and temp files
 *.log
 *.tmp
@@ -27,25 +33,77 @@ node_modules/
 # Editors
 .vscode/
 .idea/
+*.swp
+*.swo
+
+# Coverage
+coverage/
+htmlcov/
+.coverage
 
 # OS generated files
 .DS_Store
 Thumbs.db
 
-# Coverage reports
-coverage/
-htmlcov/
-.coverage
-
-# Distribution / packaging
+# Build directories
 dist/
 build/
-*.tar.gz
-*.whl
-*.egg
-*.egg-info/
+target/
+.gradle/
+
+# Python specific
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+pip-log.txt
+pip-delete-this-directory.txt
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.log
+.git/
+.mypy_cache/
+.pytest_cache/
+.hypothesis/
 
 # PHP specific
 *.php~
-.htaccess
+*.php.bak
+*.phar
+.php_cs.cache
+
+# Laravel specific
+!.env.example
+!.env
+Homestead.json
+Homestead.yaml
+Vagrantfile
+artisan
+composer.phar
+composer.lock
+package-lock.json
+yarn.lock
+npm-debug.log*
+yarn-error.log*
+node_modules/
+
+# Storage and cache
+storage/
+bootstrap/cache/
+
+# Configuration
+.env.production
+.env.local
+.env.*
+!.env
+!.env.example
 ```
