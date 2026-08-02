@@ -18,7 +18,7 @@ class SearchController extends Controller
             return redirect()->route('shop.index');
         }
 
-        $products = Product::where('is_visible', true)
+        $products = Product::where('is_active', true)
             ->where(function($q) use ($query) {
                 $q->where('name', 'like', "%{$query}%")
                   ->orWhere('description', 'like', "%{$query}%")
@@ -49,7 +49,7 @@ class SearchController extends Controller
             return response()->json(['suggestions' => []]);
         }
 
-        $products = Product::where('is_visible', true)
+        $products = Product::where('is_active', true)
             ->where('name', 'like', "%{$query}%")
             ->with('primaryImage')
             ->limit(8)
@@ -59,7 +59,7 @@ class SearchController extends Controller
                 'id' => $p->id,
                 'name' => $p->name,
                 'slug' => $p->slug,
-                'price' => $p->sale_price ?? $p->price,
+                'price' => $p->old_price && $p->old_price > $p->price ? $p->price : $p->price,
                 'image' => $p->primaryImage?->url,
                 'url' => route('products.show', ['category' => $p->category->slug ?? 'products', 'product' => $p])
             ]);
@@ -89,7 +89,7 @@ class SearchController extends Controller
             'q' => 'required|string|min:2|max:100'
         ]);
 
-        $products = Product::where('is_visible', true)
+        $products = Product::where('is_active', true)
             ->where(function($q) use ($request) {
                 $q->where('name', 'like', "%{$request->q}%")
                   ->orWhere('sku', 'like', "%{$request->q}%");
@@ -104,7 +104,7 @@ class SearchController extends Controller
                 'id' => $p->id,
                 'name' => $p->name,
                 'slug' => $p->slug,
-                'price' => $p->sale_price ?? $p->price,
+                'price' => $p->old_price && $p->old_price > $p->price ? $p->price : $p->price,
                 'image' => $p->primaryImage?->url,
                 'url' => route('products.show', ['category' => $p->category->slug ?? 'products', 'product' => $p])
             ])

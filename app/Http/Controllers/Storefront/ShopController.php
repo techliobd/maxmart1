@@ -19,7 +19,7 @@ class ShopController extends Controller
 
     public function index(Request $request)
     {
-        $query = Product::where('is_visible', true)
+        $query = Product::where('is_active', true)
             ->with(['primaryImage', 'category', 'brand']);
 
         // Category filter
@@ -93,7 +93,7 @@ class ShopController extends Controller
     public function category(Category $category)
     {
         $products = $category->products()
-            ->where('is_visible', true)
+            ->where('is_active', true)
             ->with(['primaryImage', 'brand'])
             ->paginate(24);
 
@@ -103,7 +103,7 @@ class ShopController extends Controller
     public function brand(Brand $brand)
     {
         $products = $brand->products()
-            ->where('is_visible', true)
+            ->where('is_active', true)
             ->with(['primaryImage', 'category'])
             ->paginate(24);
 

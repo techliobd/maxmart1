@@ -41,7 +41,7 @@ class CartController extends Controller
     {
         $product = Product::findOrFail($request->product_id);
         
-        if (!$product->is_visible) {
+        if (!$product->is_active) {
             return back()->with('error', 'This product is not available.');
         }
 

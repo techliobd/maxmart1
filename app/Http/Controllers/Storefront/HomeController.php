@@ -23,20 +23,19 @@ class HomeController extends Controller
     public function index()
     {
         $featuredProducts = Product::where('is_featured', true)
-            ->where('is_visible', true)
+            ->where('is_active', true)
             ->with(['primaryImage', 'category'])
             ->limit(8)
             ->get();
 
-        $newArrivals = Product::where('is_visible', true)
+        $newArrivals = Product::where('is_active', true)
             ->latest('id')
             ->with(['primaryImage', 'category'])
             ->limit(8)
             ->get();
 
-        $onSaleProducts = Product::where('is_visible', true)
-            ->whereNotNull('sale_price')
-            ->where('sale_price', '<', \DB::raw('price'))
+        $onSaleProducts = Product::where('is_on_sale', true)
+            ->where('is_active', true)
             ->with(['primaryImage', 'category'])
             ->limit(8)
             ->get();

@@ -22,7 +22,7 @@ class ProductController extends Controller
 
     public function show(Request $request, Category $category, Product $product)
     {
-        if (!$product->is_visible) {
+        if (!$product->is_active) {
             abort(404);
         }
 
@@ -59,7 +59,7 @@ class ProductController extends Controller
         // Related products
         $relatedProducts = Product::where('id', '!=', $product->id)
             ->where('category_id', $product->category_id)
-            ->where('is_visible', true)
+            ->where('is_active', true)
             ->with('primaryImage')
             ->limit(4)
             ->get();
@@ -82,7 +82,7 @@ class ProductController extends Controller
     {
         $query = $request->get('q', '');
         
-        $products = Product::where('is_visible', true)
+        $products = Product::where('is_active', true)
             ->where(function($q) use ($query) {
                 $q->where('name', 'like', "%{$query}%")
                   ->orWhere('sku', 'like', "%{$query}%")
@@ -97,7 +97,7 @@ class ProductController extends Controller
                 'id' => $p->id,
                 'name' => $p->name,
                 'slug' => $p->slug,
-                'price' => $p->sale_price ?? $p->price,
+                'price' => $p->old_price && $p->old_price > $p->price ? $p->price : $p->price,
                 'image' => $p->primaryImage?->url,
             ])
         ]);
@@ -105,7 +105,7 @@ class ProductController extends Controller
 
     public function quickView(Product $product)
     {
-        if (!$product->is_visible) {
+        if (!$product->is_active) {
             abort(404);
         }
 
@@ -125,8 +125,8 @@ class ProductController extends Controller
         }
 
         return response()->json([
-            'price' => $variation->sale_price ?? $variation->price,
-            'compare_at_price' => $variation->price,
+            'price' => $variation->old_price && $variation->old_price > $variation->price ? $variation->price : $variation->price,
+            'compare_at_price' => $variation->old_price ?: $variation->price,
             'stock' => $variation->stock_quantity,
             'sku' => $variation->sku,
             'available' => $variation->stock_quantity > 0
