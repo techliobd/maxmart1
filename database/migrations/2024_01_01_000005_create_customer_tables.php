@@ -49,7 +49,7 @@ return new class extends Migration
             $table->foreignId('variation_id')->nullable()->constrained('product_variations')->nullOnDelete();
             $table->timestamps();
 
-            $table->unique(['customer_id', 'product_id', 'variation_id']);
+            $table->unique(['customer_id', 'product_id', 'variation_id'], 'wishlist_unique');
         });
 
         Schema::create('product_comparisons', function (Blueprint $table) {
@@ -58,7 +58,7 @@ return new class extends Migration
             $table->foreignId('product_id')->constrained()->onDelete('cascade');
             $table->timestamps();
 
-            $table->unique(['customer_id', 'product_id']);
+            $table->unique(['customer_id', 'product_id'], 'comparison_unique');
         });
 
         Schema::create('carts', function (Blueprint $table) {

@@ -34,7 +34,7 @@ return new class extends Migration
             $table->foreignId('product_id')->constrained()->onDelete('cascade');
             $table->timestamps();
 
-            $table->unique(['coupon_id', 'product_id']);
+            $table->unique(['coupon_id', 'product_id'], 'coupon_product_unique');
         });
 
         Schema::create('coupon_categories', function (Blueprint $table) {
@@ -43,7 +43,7 @@ return new class extends Migration
             $table->foreignId('category_id')->constrained()->onDelete('cascade');
             $table->timestamps();
 
-            $table->unique(['coupon_id', 'category_id']);
+            $table->unique(['coupon_id', 'category_id'], 'coupon_category_unique');
         });
 
         Schema::create('coupon_users', function (Blueprint $table) {
@@ -53,7 +53,7 @@ return new class extends Migration
             $table->integer('usage_count')->default(0);
             $table->timestamps();
 
-            $table->unique(['coupon_id', 'user_id']);
+            $table->unique(['coupon_id', 'user_id'], 'coupon_user_unique');
         });
 
         Schema::create('flash_sales', function (Blueprint $table) {
@@ -75,7 +75,7 @@ return new class extends Migration
             $table->integer('sort_order')->default(0);
             $table->timestamps();
 
-            $table->unique(['flash_sale_id', 'product_id']);
+            $table->unique(['flash_sale_id', 'product_id'], 'flash_sale_product_unique');
         });
 
         Schema::create('reviews', function (Blueprint $table) {
@@ -108,7 +108,7 @@ return new class extends Migration
             $table->boolean('is_helpful')->default(true);
             $table->timestamps();
 
-            $table->unique(['review_id', 'customer_id']);
+            $table->unique(['review_id', 'customer_id'], 'review_helpful_unique');
         });
 
         Schema::create('product_questions', function (Blueprint $table) {

@@ -48,12 +48,12 @@ return new class extends Migration
             $table->timestamp('published_at')->nullable();
             $table->timestamps();
 
-            $table->index(['slug', 'is_active']);
-            $table->index(['category_id', 'is_active']);
-            $table->index(['brand_id', 'is_active']);
-            $table->index(['is_featured', 'is_active']);
-            $table->index(['is_new', 'is_active']);
-            $table->index(['is_on_sale', 'is_active']);
+            $table->index(['slug', 'is_active'], 'products_slug_active_idx');
+            $table->index(['category_id', 'is_active'], 'products_category_active_idx');
+            $table->index(['brand_id', 'is_active'], 'products_brand_active_idx');
+            $table->index(['is_featured', 'is_active'], 'products_featured_active_idx');
+            $table->index(['is_new', 'is_active'], 'products_new_active_idx');
+            $table->index(['is_on_sale', 'is_active'], 'products_sale_active_idx');
         });
 
         Schema::create('product_images', function (Blueprint $table) {
@@ -73,7 +73,7 @@ return new class extends Migration
             $table->foreignId('attribute_value_id')->constrained()->onDelete('cascade');
             $table->timestamps();
 
-            $table->unique(['product_id', 'attribute_id', 'attribute_value_id']);
+            $table->unique(['product_id', 'attribute_id', 'attribute_value_id'], 'prod_attr_unique');
         });
 
         Schema::create('product_variations', function (Blueprint $table) {
@@ -90,7 +90,7 @@ return new class extends Migration
             $table->boolean('is_active')->default(true);
             $table->timestamps();
 
-            $table->index(['product_id', 'is_active']);
+            $table->index(['product_id', 'is_active'], 'variations_product_active_idx');
         });
 
         Schema::create('variation_attribute_values', function (Blueprint $table) {
@@ -100,8 +100,8 @@ return new class extends Migration
             $table->foreignId('attribute_value_id')->constrained()->onDelete('cascade');
             $table->timestamps();
 
-            $table->unique(['variation_id', 'attribute_id']);
-            $table->index(['attribute_id', 'attribute_value_id']);
+            $table->unique(['variation_id', 'attribute_id'], 'variation_attr_unique');
+            $table->index(['attribute_id', 'attribute_value_id'], 'variation_attr_value_idx');
         });
 
         Schema::create('related_products', function (Blueprint $table) {
@@ -110,7 +110,7 @@ return new class extends Migration
             $table->foreignId('related_product_id')->constrained('products')->onDelete('cascade');
             $table->timestamps();
 
-            $table->unique(['product_id', 'related_product_id']);
+            $table->unique(['product_id', 'related_product_id'], 'related_products_unique');
         });
 
         Schema::create('frequently_bought_together', function (Blueprint $table) {
@@ -120,7 +120,7 @@ return new class extends Migration
             $table->decimal('discount_percent', 5, 2)->default(0);
             $table->timestamps();
 
-            $table->unique(['product_id', 'associated_product_id']);
+            $table->unique(['product_id', 'associated_product_id'], 'fbt_products_unique');
         });
     }
 

@@ -81,7 +81,7 @@ return new class extends Migration
             $table->json('data');
             $table->timestamps();
 
-            $table->unique(['indexable_type', 'indexable_id']);
+            $table->unique(['indexable_type', 'indexable_id'], 'scout_index_unique');
             $table->fullText('data');
         });
     }
