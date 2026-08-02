@@ -17,7 +17,7 @@ class CompareController extends Controller
         }
 
         $products = Product::whereIn('id', $compareIds)
-            ->where('is_visible', true)
+            ->where('is_active', true)
             ->with(['primaryImage', 'category', 'brand', 'attributes.attribute'])
             ->get();
 
