@@ -99,7 +99,7 @@
             <div class="mb-6">
                 @if($product->isOnSale())
                     <div class="flex items-center space-x-3">
-                        <span class="text-3xl font-bold text-red-600">{{ $product->sale_price }}</span>
+                        <span class="text-3xl font-bold text-red-600">{{ $product->old_price ?? $product->price }}</span>
                         <span class="text-xl text-gray-400 line-through">{{ $product->price }}</span>
                         <span class="bg-red-100 text-red-600 text-sm font-semibold px-2 py-1 rounded">
                             Save {{ $product->discountPercentage() }}%

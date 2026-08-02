@@ -158,10 +158,19 @@ return new class extends Migration
             $table->boolean('recovered')->default(false);
             $table->timestamps();
         });
+
+        // Add foreign key constraint for coupon_id in carts table
+        Schema::table('carts', function (Blueprint $table) {
+            $table->foreign('coupon_id')->references('id')->on('coupons')->nullOnDelete();
+        });
     }
 
     public function down(): void
     {
+        Schema::table('carts', function (Blueprint $table) {
+            $table->dropForeign(['coupon_id']);
+        });
+
         Schema::dropIfExists('abandoned_carts');
         Schema::dropIfExists('newsletter_subscribers');
         Schema::dropIfExists('notifications');

@@ -65,13 +65,13 @@ return new class extends Migration
             $table->id();
             $table->foreignId('customer_id')->nullable()->constrained()->nullOnDelete();
             $table->string('session_id')->nullable(); // For guest carts
-            $table->foreignId('coupon_id')->nullable()->constrained()->nullOnDelete();
             $table->decimal('subtotal', 12, 2)->default(0);
             $table->decimal('discount', 12, 2)->default(0);
             $table->decimal('shipping_cost', 12, 2)->default(0);
             $table->decimal('tax', 12, 2)->default(0);
             $table->decimal('total', 12, 2)->default(0);
             $table->string('coupon_code')->nullable();
+            $table->unsignedBigInteger('coupon_id')->nullable(); // Foreign key added in later migration
             $table->timestamps();
         });
 
