@@ -20,13 +20,13 @@ class ProductStoreRequest extends FormRequest
             'short_description' => 'nullable|string|max:2000',
             'sku' => 'required|string|max:100|unique:products,sku',
             'price' => 'required|numeric|min:0',
-            'sale_price' => 'nullable|numeric|min:0|lt:price',
+            'old_price' => 'nullable|numeric|min:0|gt:price',
             'stock_quantity' => 'nullable|integer|min:0',
             'category_id' => 'required|exists:categories,id',
             'brand_id' => 'nullable|exists:brands,id',
             'tax_class_id' => 'nullable|exists:tax_classes,id',
             'is_featured' => 'boolean',
-            'is_visible' => 'boolean',
+            'is_active' => 'boolean',
             'meta_title' => 'nullable|string|max:200',
             'meta_description' => 'nullable|string|max:500',
             'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:5120',
@@ -46,9 +46,8 @@ class ProductStoreRequest extends FormRequest
             'sku.unique' => 'This SKU is already in use.',
             'price.required' => 'Price is required.',
             'price.min' => 'Price cannot be negative.',
-            'sale_price.lt' => 'Sale price must be less than regular price.',
+            'old_price.gt' => 'Old price must be greater than regular price.',
             'category_id.required' => 'Category is required.',
-            'sale_price.lt' => 'Sale price must be less than regular price.',
         ];
     }
 }

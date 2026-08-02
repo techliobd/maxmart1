@@ -70,7 +70,7 @@
         {{-- Price --}}
         <div class="mt-2 flex items-center space-x-2">
             @if($product->isOnSale())
-                <span class="text-lg font-bold text-red-600">{{ $product->sale_price }}</span>
+                <span class="text-lg font-bold text-red-600">{{ $product->old_price ?? $product->price }}</span>
                 <span class="text-sm text-gray-400 line-through">{{ $product->price }}</span>
             @else
                 <span class="text-lg font-bold text-gray-900">{{ $product->price }}</span>

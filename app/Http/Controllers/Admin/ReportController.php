@@ -75,7 +75,7 @@ class ReportController extends Controller
     public function products(Request $request)
     {
         $lowStockProducts = Product::where('track_inventory', true)
-            ->whereColumn('stock_quantity', '<=', 'low_stock_threshold')
+            ->whereColumn('stock_quantity', '<=', 'min_stock')
             ->with('category')
             ->orderBy('stock_quantity')
             ->get();
@@ -130,13 +130,13 @@ class ReportController extends Controller
     public function inventory(Request $request)
     {
         $inventoryValue = Product::where('track_inventory', true)
-            ->selectRaw('SUM(stock_quantity * (sale_price - discount)) as total_value')
+            ->selectRaw('SUM(stock_quantity * price) as total_value')
             ->value('total_value') ?? 0;
 
         $productsByStock = Product::where('track_inventory', true)
             ->selectRaw('CASE 
                 WHEN stock_quantity = 0 THEN "Out of Stock"
-                WHEN stock_quantity <= low_stock_threshold THEN "Low Stock"
+                WHEN stock_quantity <= min_stock THEN "Low Stock"
                 ELSE "In Stock"
             END as stock_status, COUNT(*) as count')
             ->groupBy('stock_status')

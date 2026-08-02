@@ -69,7 +69,7 @@
                     <div>
                         <h3 class="text-sm font-medium text-gray-500">Visible on Product Page</h3>
                         <p class="mt-1">
-                            @if($attribute->is_visible)
+                            @if($attribute->is_visible_on_product)
                                 <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">Yes</span>
                             @else
                                 <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">No</span>
