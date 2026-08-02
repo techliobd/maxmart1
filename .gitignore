@@ -4,30 +4,24 @@
 __pycache__/
 *.o
 *.obj
-dist/
-build/
-target/
+*.class
+*.exe
+*.dll
+*.so
+*.a
+*.out
 
 # Dependencies
-.venv/
-venv/
+vendor/
 node_modules/
-.mypy_cache/
-.pytest_cache/
-.coverage
-coverage/
-htmlcov/
+.env
+.env.local
+.env.*
 
 # Logs and temp files
 *.log
 *.tmp
 *.swp
-*.swo
-
-# Environment
-.env
-.env.local
-*.env.*
 
 # Editors
 .vscode/
@@ -37,11 +31,56 @@ htmlcov/
 .DS_Store
 Thumbs.db
 
+# Coverage
+coverage/
+htmlcov/
+.coverage
+
 # Laravel specific
 bootstrap/cache/
 storage/logs/
-storage/framework/cache/
-storage/framework/sessions/
-storage/framework/views/
+storage/framework/
 public/storage
+
+# Database
+database/seeds/*.sql
+database/dumps/
+
+# Build directories
+dist/
+build/
+target/
+.gradle/
+
+# Python specific
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# PHP specific
+*.php~
+*.php.bak
+*.phar
+composer.lock
+
+# Cache
+.cache/
+.mypy_cache/
+.pytest_cache/
 ```
