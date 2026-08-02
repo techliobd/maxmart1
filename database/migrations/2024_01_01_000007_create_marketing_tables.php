@@ -62,8 +62,8 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->string('banner_image')->nullable();
             $table->decimal('discount_percent', 5, 2)->default(0);
-            $table->timestamp('starts_at');
-            $table->timestamp('ends_at');
+            $table->timestamp('starts_at')->nullable();
+            $table->timestamp('ends_at')->nullable();
             $table->boolean('is_active')->default(true);
             $table->timestamps();
         });
