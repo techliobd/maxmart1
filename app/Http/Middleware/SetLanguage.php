@@ -17,7 +17,7 @@ class SetLanguage
     public function handle(Request $request, Closure $next): Response
     {
         // Get language from session or default
-        $locale = session('locale', config('app.locale', 'en'));
+        $locale = session('locale', config('maxmart.default_language', 'en'));
 
         // Verify language exists in database
         $language = Language::where('code', $locale)->first();

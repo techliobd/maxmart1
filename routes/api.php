@@ -1,11 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\CartController;
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\SearchController;
-use App\Http\Controllers\WishlistController;
-use App\Http\Controllers\CompareController;
+use App\Http\Controllers\Storefront\CartController;
+use App\Http\Controllers\Storefront\ProductController;
+use App\Http\Controllers\Storefront\SearchController;
+use App\Http\Controllers\Storefront\WishlistController;
+use App\Http\Controllers\Storefront\CompareController;
 
 /*
 |--------------------------------------------------------------------------
