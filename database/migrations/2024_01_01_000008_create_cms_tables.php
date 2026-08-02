@@ -114,6 +114,7 @@ return new class extends Migration
             $table->string('designation')->nullable();
             $table->text('testimonial');
             $table->integer('rating')->default(5);
+            $table->boolean('is_active')->default(true);
             $table->boolean('is_approved')->default(true);
             $table->integer('sort_order')->default(0);
             $table->timestamps();
