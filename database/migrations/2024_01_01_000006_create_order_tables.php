@@ -108,9 +108,9 @@ return new class extends Migration
             $table->string('cancel_reason')->nullable();
             $table->timestamps();
 
-            $table->index(['order_number', 'status']);
-            $table->index(['customer_id', 'status']);
-            $table->index(['payment_status']);
+            $table->index(['order_number', 'status'], 'orders_number_status_idx');
+            $table->index(['customer_id', 'status'], 'orders_customer_status_idx');
+            $table->index(['payment_status'], 'orders_payment_status_idx');
         });
 
         Schema::create('order_items', function (Blueprint $table) {

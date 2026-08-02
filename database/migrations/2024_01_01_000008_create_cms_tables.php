@@ -38,9 +38,9 @@ return new class extends Migration
             $table->string('meta_keywords')->nullable();
             $table->timestamps();
 
-            $table->index(['slug', 'is_published']);
-            $table->index(['is_featured', 'is_published']);
-            $table->index(['published_at', 'is_published']);
+            $table->index(['slug', 'is_published'], 'blog_posts_slug_published_idx');
+            $table->index(['is_featured', 'is_published'], 'blog_posts_featured_published_idx');
+            $table->index(['published_at', 'is_published'], 'blog_posts_published_at_idx');
         });
 
         Schema::create('cms_pages', function (Blueprint $table) {
@@ -147,8 +147,8 @@ return new class extends Migration
             $table->string('user_agent')->nullable();
             $table->timestamps();
 
-            $table->index(['user_id', 'log_type']);
-            $table->index(['module', 'record_type']);
+            $table->index(['user_id', 'log_type'], 'activity_logs_user_type_idx');
+            $table->index(['module', 'record_type'], 'activity_logs_module_type_idx');
         });
 
         Schema::create('search_queries', function (Blueprint $table) {

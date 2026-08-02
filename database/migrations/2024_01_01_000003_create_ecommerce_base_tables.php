@@ -93,7 +93,7 @@ return new class extends Migration
             $table->integer('sort_order')->default(0);
             $table->timestamps();
 
-            $table->unique(['attribute_id', 'slug']);
+            $table->unique(['attribute_id', 'slug'], 'attr_values_attr_slug_unique');
         });
     }
 
