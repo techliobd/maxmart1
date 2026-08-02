@@ -1,20 +1,20 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\ShopController;
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\CartController;
-use App\Http\Controllers\CheckoutController;
-use App\Http\Controllers\WishlistController;
-use App\Http\Controllers\CompareController;
-use App\Http\Controllers\SearchController;
-use App\Http\Controllers\BlogController;
-use App\Http\Controllers\PageController;
-use App\Http\Controllers\ReviewController;
-use App\Http\Controllers\TrackOrderController;
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\CustomerDashboardController;
+use App\Http\Controllers\Storefront\HomeController;
+use App\Http\Controllers\Storefront\ShopController;
+use App\Http\Controllers\Storefront\ProductController;
+use App\Http\Controllers\Storefront\CartController;
+use App\Http\Controllers\Storefront\CheckoutController;
+use App\Http\Controllers\Storefront\WishlistController;
+use App\Http\Controllers\Storefront\CompareController;
+use App\Http\Controllers\Storefront\SearchController;
+use App\Http\Controllers\Storefront\BlogController;
+use App\Http\Controllers\Storefront\PageController;
+use App\Http\Controllers\Storefront\ReviewController;
+use App\Http\Controllers\Storefront\TrackOrderController;
+use App\Http\Controllers\Storefront\AuthController;
+use App\Http\Controllers\Storefront\CustomerDashboardController;
 use App\Http\Middleware\SetCurrency;
 use App\Http\Middleware\SetLanguage;
 

@@ -18,7 +18,7 @@ class SetCurrency
     public function handle(Request $request, Closure $next): Response
     {
         // Get currency from session or default
-        $currencyCode = session('currency', config('app.currency', 'USD'));
+        $currencyCode = session('currency', config('maxmart.default_currency', 'USD'));
 
         // Verify currency exists in database
         $currency = Currency::where('code', $currencyCode)->first();
